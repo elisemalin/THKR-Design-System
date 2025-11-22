@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Hearts Kitten Rescue - Homepage Mockup V2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #1B4D5C;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header/Navigation - Centered Style */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            padding: 0.5rem 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 25px rgba(0, 0, 0, 0.06);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(27, 77, 92, 0.1);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+        }
+
+        .logo-text h1 {
+            font-size: 1.3rem;
+            color: #1B4D5C;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: #FF9876;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .header-donate {
+            background: linear-gradient(135deg, #FF9876, #FFB499);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 20px rgba(255, 152, 118, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .header-donate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 152, 118, 0.4);
+        }
+
+        nav {
+            padding: 1rem 0;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+            justify-content: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #1B4D5C;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #FF9876;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: #FF9876;
+        }
+
+        /* Hero Section - Full Width Image Style */
+        .hero {
+            margin-top: 160px;
+            position: relative;
+            min-height: 75vh;
+            background: linear-gradient(135deg, rgba(255, 232, 224, 0.9), rgba(255, 245, 242, 0.9)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23FFE8E0" width="1200" height="600"/><circle cx="200" cy="150" r="100" fill="%23FFB499" opacity="0.3"/><circle cx="900" cy="400" r="150" fill="%231B4D5C" opacity="0.1"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 5%;
+        }
+
+        .hero-wrapper {
+            max-width: 900px;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: white;
+            color: #FF9876;
+            padding: 0.6rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: #1B4D5C;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            color: #1B4D5C;
+            margin-bottom: 3rem;
+            font-weight: 400;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            padding: 1.1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FF9876, #FFB499);
+            color: white;
+            box-shadow: 0 4px 20px rgba(255, 152, 118, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255, 152, 118, 0.5);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #1B4D5C;
+            border: 2px solid #1B4D5C;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: #1B4D5C;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .hero-features {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 600;
+            color: #1B4D5C;
+        }
+
+        .hero-feature-icon {
+            width: 24px;
+            height: 24px;
+            background: #FF9876;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+        }
+
+        /* Our Approach Section */
+        .our-approach {
+            background: #EBCAC0;
+            padding: 5rem 5%;
+            text-align: center;
+        }
+
+        .our-approach h2 {
+            font-size: 3rem;
+            color: #1B4D5C;
+            margin-bottom: 3rem;
+            font-weight: 800;
+        }
+
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        .approach-item {
+            padding: 3rem 2.5rem;
+            position: relative;
+            background: rgba(255, 245, 242, 0.5);
+        }
+
+        .approach-item:not(:last-child) {
+            border-right: 1px solid rgba(27, 77, 92, 0.15);
+        }
+
+        .approach-item h3 {
+            font-size: 1.6rem;
+            color: #1B4D5C;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .approach-item h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #FF9876;
+        }
+
+        .approach-item p {
+            color: #1B4D5C;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Mission Section */
+        .mission {
+            padding: 6rem 5%;
+            background: white;
+            text-align: center;
+        }
+
+        .mission-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .mission h2 {
+            font-size: 3rem;
+            color: #1B4D5C;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .mission p {
+            font-size: 1.25rem;
+            color: #1B4D5C;
+            opacity: 0.85;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .mission-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .mission-stat {
+            background: linear-gradient(135deg, #FFF5F2, #FFE8E0);
+            padding: 2.5rem 1.5rem;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .mission-stat:hover {
+            transform: scale(1.05);
+        }
+
+        .mission-stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #FF9876;
+            margin-bottom: 0.5rem;
+        }
+
+        .mission-stat-label {
+            font-size: 1rem;
+            color: #1B4D5C;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Ways to Help - Grid Style */
+        .ways-to-help {
+            padding: 6rem 5%;
+            background: linear-gradient(to bottom, #1B4D5C 0%, #164150 100%);
+            color: white;
+        }
+
+        .ways-to-help .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .ways-to-help h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .ways-to-help .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .ways-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .way-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 3rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .way-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #FF9876, #FFB499);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .way-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .way-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            border-color: rgba(255, 152, 118, 0.3);
+        }
+
+        .way-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .way-icon {
+            font-size: 3.5rem;
+        }
+
+        .way-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .way-card p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .btn-light {
+            background: white;
+            color: #1B4D5C;
+        }
+
+        .btn-light:hover {
+            background: #FF9876;
+            color: white;
+        }
+
+        /* Featured Kittens - Card Grid */
+        .featured {
+            padding: 6rem 5%;
+            background: linear-gradient(to bottom, white 0%, #FFF5F2 100%);
+        }
+
+        .featured .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .featured h2 {
+            font-size: 3rem;
+            color: #1B4D5C;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .featured .subtitle {
+            font-size: 1.2rem;
+            color: #1B4D5C;
+            opacity: 0.8;
+        }
+
+        .kitten-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .kitten-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .kitten-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(255, 152, 118, 0.2);
+        }
+
+        .kitten-image-wrapper {
+            position: relative;
+            height: 320px;
+            background: linear-gradient(135deg, #FFE8E0, #FFC4B0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .kitten-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #FF9876;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .kitten-emoji {
+            font-size: 8rem;
+        }
+
+        .kitten-details {
+            padding: 2rem;
+        }
+
+        .kitten-name {
+            font-size: 2rem;
+            color: #1B4D5C;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .kitten-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: #1B4D5C;
+            opacity: 0.8;
+        }
+
+        .kitten-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .kitten-description {
+            color: #1B4D5C;
+            opacity: 0.85;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .kitten-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: #FFE8E0;
+            color: #FF9876;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .view-all {
+            text-align: center;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            padding: 5rem 5%;
+            background: #FF9876;
+            text-align: center;
+            color: white;
+        }
+
+        .newsletter h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .newsletter p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        .newsletter-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1.2rem 1.8rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .newsletter-form button {
+            padding: 1.2rem 2.5rem;
+            background: #1B4D5C;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .newsletter-form button:hover {
+            background: #164150;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: #1B4D5C;
+            color: white;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-about h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .footer-about p {
+            opacity: 0.8;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.3rem;
+        }
+
+        .social-icon:hover {
+            background: #FF9876;
+            transform: translateY(-3px);
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #FF9876;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .approach-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .approach-item:not(:last-child) {
+                border-right: none;
+                border-bottom: 1px solid rgba(27, 77, 92, 0.15);
+            }
+
+            .ways-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            .hero {
+                margin-top: 280px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .mission h2,
+            .ways-to-help h2,
+            .featured h2 {
+                font-size: 2rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="logo-section">
+                <div class="logo">
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="100" r="95" fill="#FFE8E0"/>
+                        <text x="100" y="105" font-size="90" text-anchor="middle" dominant-baseline="middle">💕</text>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <h1>Two Hearts Kitten Rescue</h1>
+                    <p>Compassion • Care • Community</p>
+                </div>
+            </div>
+            <a href="#donate" class="header-donate">💝 Donate Now</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#adopt">Adopt a Kitten</a></li>
+                <li><a href="#foster">Foster Program</a></li>
+                <li><a href="#volunteer">Volunteer</a></li>
+                <li><a href="#about">Our Story</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-wrapper">
+            <div class="hero-badge">501(c)(3) Nonprofit Organization</div>
+            <h1>Tiny Paws, Big Hearts</h1>
+            <p class="subtitle">We rescue the smallest and most vulnerable kittens, providing expert neonatal care and finding them loving forever homes.</p>
+            <div class="hero-actions">
+                <a href="#adopt" class="btn btn-primary">🐱 Meet Our Kittens</a>
+                <a href="#foster" class="btn btn-secondary">💝 Foster with Us</a>
+            </div>
+            <div class="hero-features">
+                <div class="hero-feature">
+                    <div class="hero-feature-icon">✓</div>
+                    <span>24/7 Neonatal Care</span>
+                </div>
+                <div class="hero-feature">
+                    <div class="hero-feature-icon">✓</div>
+                    <span>Full Medical Support</span>
+                </div>
+                <div class="hero-feature">
+                    <div class="hero-feature-icon">✓</div>
+                    <span>Lifetime Adoption Support</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Approach Section -->
+    <section class="our-approach">
+        <h2>Our Approach</h2>
+        <div class="approach-grid">
+            <div class="approach-item">
+                <h3>Compassionate Care</h3>
+                <p>We prioritize enrichment and socialization to provide comprehensive care that nurtures every kitten's physical, emotional, and behavioral well-being, helping them thrive.</p>
+            </div>
+            <div class="approach-item">
+                <h3>Innovative Technologies</h3>
+                <p>We're integrating AI, connected devices, and automation to revolutionize training, provide 24/7 foster support, cut costs, and elevate kitten care in our nursery.</p>
+            </div>
+            <div class="approach-item">
+                <h3>Reimagined Programs</h3>
+                <p>We're developing a number of programs designed to address the challenges both pets and people in our community face today, creating innovative solutions for a brighter future.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission">
+        <div class="mission-content">
+            <h2>Our Mission</h2>
+            <p>Two Hearts Kitten Rescue is dedicated to saving the lives of orphaned, abandoned, and at-risk kittens through compassionate neonatal care, community education, and responsible adoption practices.</p>
+            <p>Every kitten deserves a chance at life, and every life saved makes our community stronger.</p>
+        </div>
+        <div class="mission-stats">
+            <div class="mission-stat">
+                <div class="mission-stat-number">500+</div>
+                <div class="mission-stat-label">Kittens Rescued</div>
+            </div>
+            <div class="mission-stat">
+                <div class="mission-stat-number">450+</div>
+                <div class="mission-stat-label">Adoptions</div>
+            </div>
+            <div class="mission-stat">
+                <div class="mission-stat-number">150+</div>
+                <div class="mission-stat-label">Foster Heroes</div>
+            </div>
+            <div class="mission-stat">
+                <div class="mission-stat-number">98%</div>
+                <div class="mission-stat-label">Survival Rate</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ways to Help -->
+    <section class="ways-to-help">
+        <div class="section-title">
+            <h2>Make a Difference Today</h2>
+            <p class="subtitle">Choose the way that works best for you to support our mission</p>
+        </div>
+        <div class="ways-grid">
+            <div class="way-card">
+                <div class="way-header">
+                    <div class="way-icon">🏠</div>
+                    <h3>Adopt</h3>
+                </div>
+                <p>Give a rescued kitten their forever home. Our kittens are fully vetted, socialized, and ready to bring joy to your life.</p>
+                <a href="#adopt" class="btn btn-light">View Available Kittens</a>
+            </div>
+            <div class="way-card">
+                <div class="way-header">
+                    <div class="way-icon">💝</div>
+                    <h3>Foster</h3>
+                </div>
+                <p>Become a Foster Hero! We provide all supplies, medical care, and 24/7 support. You provide the love and temporary home.</p>
+                <a href="#foster" class="btn btn-light">Start Fostering</a>
+            </div>
+            <div class="way-card">
+                <div class="way-header">
+                    <div class="way-icon">❤️</div>
+                    <h3>Donate</h3>
+                </div>
+                <p>Your donation directly impacts kitten lives by funding medical care, formula, supplies, and emergency rescues.</p>
+                <a href="#donate" class="btn btn-light">Make a Gift</a>
+            </div>
+            <div class="way-card">
+                <div class="way-header">
+                    <div class="way-icon">🙌</div>
+                    <h3>Volunteer</h3>
+                </div>
+                <p>Join our team of dedicated volunteers. From bottle feeding to event planning, there's a role perfect for you!</p>
+                <a href="#volunteer" class="btn btn-light">Get Involved</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Kittens -->
+    <section class="featured">
+        <div class="section-title">
+            <h2>Kittens Looking for Love</h2>
+            <p class="subtitle">These adorable babies are ready for their forever homes</p>
+        </div>
+        <div class="kitten-grid">
+            <div class="kitten-card">
+                <div class="kitten-image-wrapper">
+                    <div class="kitten-badge">Available</div>
+                    <div class="kitten-emoji">🐱</div>
+                </div>
+                <div class="kitten-details">
+                    <h3 class="kitten-name">Whiskers</h3>
+                    <div class="kitten-meta">
+                        <span>⏱️ 8 weeks old</span>
+                        <span>🎭 Male</span>
+                    </div>
+                    <p class="kitten-description">This energetic tabby is full of personality! Loves to play, explore, and cuddle. Perfect for an active family.</p>
+                    <div class="kitten-tags">
+                        <span class="tag">Playful</span>
+                        <span class="tag">Affectionate</span>
+                        <span class="tag">Good with Kids</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">Meet Whiskers</a>
+                </div>
+            </div>
+            <div class="kitten-card">
+                <div class="kitten-image-wrapper">
+                    <div class="kitten-badge">Available</div>
+                    <div class="kitten-emoji">😺</div>
+                </div>
+                <div class="kitten-details">
+                    <h3 class="kitten-name">Luna</h3>
+                    <div class="kitten-meta">
+                        <span>⏱️ 10 weeks old</span>
+                        <span>🎭 Female</span>
+                    </div>
+                    <p class="kitten-description">Sweet and gentle Luna is a professional cuddler. She loves calm environments and will be your constant companion.</p>
+                    <div class="kitten-tags">
+                        <span class="tag">Gentle</span>
+                        <span class="tag">Quiet</span>
+                        <span class="tag">Lap Cat</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">Meet Luna</a>
+                </div>
+            </div>
+            <div class="kitten-card">
+                <div class="kitten-image-wrapper">
+                    <div class="kitten-badge">Available</div>
+                    <div class="kitten-emoji">😸</div>
+                </div>
+                <div class="kitten-details">
+                    <h3 class="kitten-name">Oliver</h3>
+                    <div class="kitten-meta">
+                        <span>⏱️ 12 weeks old</span>
+                        <span>🎭 Male</span>
+                    </div>
+                    <p class="kitten-description">Curious and brave, Oliver is always investigating something new. He's smart, social, and ready for adventure!</p>
+                    <div class="kitten-tags">
+                        <span class="tag">Adventurous</span>
+                        <span class="tag">Smart</span>
+                        <span class="tag">Social</span>
+                    </div>
+                    <a href="#" class="btn btn-primary">Meet Oliver</a>
+                </div>
+            </div>
+        </div>
+        <div class="view-all">
+            <a href="#all-kittens" class="btn btn-secondary">View All Available Kittens</a>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <h2>Stay Connected</h2>
+        <p>Get updates on new kittens, success stories, and upcoming events</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-about">
+                <h3>Two Hearts Kitten Rescue</h3>
+                <p>We're dedicated to saving the lives of orphaned and at-risk kittens through compassionate care, community education, and responsible adoption.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon" aria-label="Facebook">📘</a>
+                    <a href="#" class="social-icon" aria-label="Instagram">📷</a>
+                    <a href="#" class="social-icon" aria-label="Twitter">🐦</a>
+                    <a href="#" class="social-icon" aria-label="TikTok">🎵</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Adopt</h4>
+                <ul>
+                    <li><a href="#">Available Kittens</a></li>
+                    <li><a href="#">Adoption Process</a></li>
+                    <li><a href="#">Adoption FAQ</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Get Involved</h4>
+                <ul>
+                    <li><a href="#">Foster Program</a></li>
+                    <li><a href="#">Volunteer</a></li>
+                    <li><a href="#">Donate</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>About</h4>
+                <ul>
+                    <li><a href="#">Our Mission</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Events</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Two Hearts Kitten Rescue. All Rights Reserved. | 501(c)(3) Nonprofit | EIN: XX-XXXXXXX</p>
+        </div>
+    </footer>
+</body>
+</html>

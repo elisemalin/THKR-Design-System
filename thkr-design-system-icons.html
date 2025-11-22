@@ -1,0 +1,2973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Hearts Kitten Rescue - Design System & Components</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --thkr-dark-teal: #0C4862;
+            --thkr-coral: #FF9876;
+            --thkr-coral-light: #FFB499;
+            --thkr-peach: #EBCAC0;
+            --thkr-light-peach: #FFE8E0;
+            --thkr-lightest-peach: #FFF5F2;
+        }
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--thkr-dark-teal);
+            line-height: 1.6;
+            background: #f5f5f5;
+        }
+
+        /* Design System Layout */
+        .ds-header {
+            background: var(--thkr-dark-teal);
+            color: white;
+            padding: 2rem 5%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .ds-header h1 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .ds-header h1 i {
+            color: var(--thkr-coral);
+        }
+
+        .ds-header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .ds-nav {
+            background: white;
+            padding: 1rem 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .ds-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .ds-nav a {
+            text-decoration: none;
+            color: var(--thkr-dark-teal);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .ds-nav a:hover {
+            background: var(--thkr-coral);
+            color: white;
+        }
+
+        .ds-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 5%;
+        }
+
+        .ds-section {
+            background: white;
+            padding: 3.5rem;
+            margin-bottom: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .ds-section h2 {
+            font-size: 2.5rem;
+            color: var(--thkr-dark-teal);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .ds-section h2 i {
+            color: var(--thkr-coral);
+            margin-right: 0.75rem;
+        }
+
+        .ds-section-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.75;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .ds-section h3 {
+            font-size: 1.8rem;
+            color: var(--thkr-dark-teal);
+            margin: 2rem 0 1rem;
+            font-weight: 700;
+        }
+
+        .ds-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .ds-example {
+            border: 2px dashed var(--thkr-light-peach);
+            padding: 2rem;
+            border-radius: 10px;
+            background: var(--thkr-lightest-peach);
+        }
+
+        .ds-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--thkr-coral);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Color Swatches */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .color-swatch {
+            text-align: center;
+        }
+
+        .color-box {
+            height: 120px;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .color-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .color-hex {
+            font-family: monospace;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Typography */
+        .type-scale {
+            margin: 2rem 0;
+        }
+
+        .type-example {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: var(--thkr-lightest-peach);
+            border-radius: 10px;
+            border-left: 4px solid var(--thkr-coral);
+        }
+
+        .type-label {
+            font-size: 0.8rem;
+            color: var(--thkr-coral);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1.25rem 2.75rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 1rem;
+            line-height: 1.3;
+            border: none;
+            cursor: pointer;
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .btn i {
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--thkr-coral), var(--thkr-coral-light));
+            color: white;
+            box-shadow: 0 4px 20px rgba(255, 152, 118, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255, 152, 118, 0.5);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--thkr-dark-teal);
+            border: 2px solid var(--thkr-dark-teal);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background: var(--thkr-dark-teal);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .btn-light {
+            background: white;
+            color: var(--thkr-dark-teal);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-light:hover {
+            background: var(--thkr-coral);
+            color: white;
+        }
+
+        .btn-dark {
+            background: var(--thkr-dark-teal);
+            color: white;
+        }
+
+        .btn-dark:hover {
+            background: #164150;
+        }
+
+        .btn-small {
+            padding: 0.8rem 1.8rem;
+            font-size: 0.85rem;
+        }
+
+        .btn-large {
+            padding: 1.4rem 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* Icon Styles */
+        .icon-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .icon-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--thkr-lightest-peach);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .icon-item:hover {
+            background: var(--thkr-light-peach);
+            transform: translateY(-5px);
+        }
+
+        .icon-item i {
+            font-size: 2.5rem;
+            color: var(--thkr-coral);
+            margin-bottom: 0.5rem;
+        }
+
+        .icon-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--thkr-dark-teal);
+        }
+
+        /* Feature Icons */
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--thkr-coral);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 15px rgba(255, 152, 118, 0.3);
+        }
+
+        .feature-icon-large {
+            width: 80px;
+            height: 80px;
+            font-size: 2.5rem;
+        }
+
+        .feature-box {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .feature-box h4 {
+            margin: 1rem 0 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        /* Card Styles */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 1024px) {
+            .card-grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .card-grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(255, 152, 118, 0.2);
+        }
+
+        .card-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-content > *:last-child {
+            margin-top: auto;
+        }
+
+        .card-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--thkr-light-peach), #FFC4B0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            position: relative;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--thkr-coral);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Our Approach Section */
+        .approach-section {
+            margin: 4rem 0;
+        }
+
+        .approach-title {
+            text-align: center;
+            font-size: 3rem;
+            color: var(--thkr-dark-teal);
+            margin-bottom: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            background: rgba(255, 245, 242, 0.5);
+            border-radius: 25px;
+            overflow: hidden;
+            border: 1px solid rgba(27, 77, 92, 0.1);
+        }
+
+        .approach-item {
+            padding: 3.5rem 2.5rem;
+            background: transparent;
+            text-align: center;
+            border-right: 1px solid rgba(27, 77, 92, 0.15);
+            flex: 1;
+            min-width: 0;
+        }
+
+        .approach-item:last-child {
+            border-right: none;
+        }
+
+        .approach-item h3 {
+            font-size: 1.6rem;
+            color: var(--thkr-dark-teal);
+            margin-bottom: 1.25rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            line-height: 1.3;
+        }
+
+        .approach-item h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--thkr-coral);
+        }
+
+        .approach-item p {
+            color: var(--thkr-dark-teal);
+            line-height: 1.9;
+            font-size: 1.05rem;
+            margin-top: 1.75rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 1024px) {
+            .approach-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .approach-item {
+                border-right: none;
+                border-bottom: 1px solid rgba(27, 77, 92, 0.15);
+            }
+
+            .approach-item:last-child {
+                border-bottom: none;
+            }
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: var(--thkr-dark-teal);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .card-meta i {
+            color: var(--thkr-coral);
+        }
+
+        .card-text {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            opacity: 0.85;
+            font-size: 1rem;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: var(--thkr-light-peach);
+            color: var(--thkr-coral);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Stats/Numbers */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--thkr-lightest-peach), var(--thkr-light-peach));
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            color: var(--thkr-coral);
+            margin-bottom: 1.25rem;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--thkr-coral);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.05rem;
+            color: var(--thkr-dark-teal);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.4;
+            opacity: 0.9;
+        }
+
+        /* Hero Variations */
+        .hero-example {
+            background: linear-gradient(135deg, rgba(255, 232, 224, 0.9), rgba(255, 245, 242, 0.9));
+            padding: 5rem 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .hero-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(255, 232, 224, 0.9), rgba(255, 245, 242, 0.9));
+            padding: 5rem 3rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .hero-split-content {
+            text-align: left;
+        }
+
+        .hero-split-image {
+            background: var(--thkr-dark-teal);
+            border-radius: 20px;
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+
+        .hero-fullscreen {
+            background: linear-gradient(135deg, var(--thkr-dark-teal), #1B4D5C);
+            color: white;
+            padding: 7rem 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 2rem 0;
+            min-height: 450px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-image-bg {
+            background: linear-gradient(135deg, rgba(27, 77, 92, 0.85), rgba(27, 77, 92, 0.9)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="50">🐱</text></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 7rem 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .hero-minimal {
+            background: white;
+            border: 3px solid var(--thkr-light-peach);
+            padding: 5rem 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            color: var(--thkr-coral);
+            padding: 0.6rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-badge-dark {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.6rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .hero-split {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Donation Form */
+        .donation-thermometer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+            margin: 3rem 0;
+        }
+
+        .donation-form {
+            background: white;
+            border: 3px solid var(--thkr-light-peach);
+            border-radius: 20px;
+            padding: 3rem;
+        }
+
+        .donation-form h3 {
+            color: var(--thkr-dark-teal);
+            margin-bottom: 0.75rem;
+            font-size: 2rem;
+            line-height: 1.3;
+        }
+
+        .donation-form .subtitle {
+            color: var(--thkr-dark-teal);
+            opacity: 0.75;
+            margin-bottom: 2.25rem;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .donation-amounts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 2.25rem;
+        }
+
+        .donation-amount {
+            background: var(--thkr-lightest-peach);
+            border: 3px solid var(--thkr-light-peach);
+            border-radius: 15px;
+            padding: 1.75rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--thkr-dark-teal);
+            line-height: 1.2;
+        }
+
+        .donation-amount:hover {
+            background: var(--thkr-light-peach);
+            border-color: var(--thkr-coral);
+            transform: translateY(-3px);
+        }
+
+        .donation-amount.active {
+            background: var(--thkr-coral);
+            border-color: var(--thkr-coral);
+            color: white;
+        }
+
+        .donation-amount small {
+            display: block;
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+
+        .custom-amount {
+            margin-bottom: 2.25rem;
+        }
+
+        .custom-amount input {
+            width: 100%;
+            padding: 1.25rem 1.75rem;
+            border: 3px solid var(--thkr-light-peach);
+            border-radius: 15px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .custom-amount input:focus {
+            outline: none;
+            border-color: var(--thkr-coral);
+        }
+
+        .impact-message {
+            background: var(--thkr-lightest-peach);
+            border-left: 4px solid var(--thkr-coral);
+            padding: 1.25rem 1.75rem;
+            border-radius: 10px;
+            margin-bottom: 2.25rem;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .impact-message i {
+            color: var(--thkr-coral);
+            margin-right: 0.75rem;
+        }
+
+        /* Newsletter Signup */
+        .newsletter-box {
+            background: linear-gradient(135deg, var(--thkr-dark-teal), #1B4D5C);
+            color: white;
+            padding: 3.5rem 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .newsletter-box h3 {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .newsletter-box p {
+            opacity: 0.9;
+            margin-bottom: 2.25rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1.25rem 1.75rem;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.4;
+        }
+
+        .newsletter-form button {
+            padding: 1.25rem 2.5rem;
+            background: var(--thkr-coral);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: #ff7d5a;
+            transform: translateY(-2px);
+        }
+
+        /* Testimonial Card */
+        .testimonial {
+            background: white;
+            border: 3px solid var(--thkr-light-peach);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-size: 3rem;
+            color: var(--thkr-coral);
+            opacity: 0.3;
+            position: absolute;
+            top: 1.5rem;
+            left: 2rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            padding-top: 1.5rem;
+            color: var(--thkr-dark-teal);
+            opacity: 0.9;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--thkr-coral);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .testimonial-info h4 {
+            color: var(--thkr-dark-teal);
+            margin-bottom: 0.2rem;
+        }
+
+        .testimonial-info p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Success Story Card */
+        .success-story {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 2rem;
+            background: white;
+            border: 3px solid var(--thkr-light-peach);
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 2rem 0;
+        }
+
+        .success-story-image {
+            background: var(--thkr-dark-teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 15rem;
+            padding: 3rem;
+        }
+
+        .success-story-content {
+            padding: 3rem 3rem 3rem 0;
+        }
+
+        .success-story-badge {
+            display: inline-block;
+            background: var(--thkr-light-peach);
+            color: var(--thkr-coral);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .success-story h3 {
+            color: var(--thkr-dark-teal);
+            margin-bottom: 1.25rem;
+            font-size: 1.8rem;
+            line-height: 1.3;
+        }
+
+        .success-story-content p {
+            line-height: 1.8;
+            font-size: 1.05rem;
+            opacity: 0.9;
+        }
+
+        .success-story-timeline {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--thkr-light-peach);
+        }
+
+        .timeline-item {
+            flex: 1;
+        }
+
+        .timeline-item strong {
+            color: var(--thkr-coral);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .timeline-item span {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* Foster Application CTA */
+        .foster-cta {
+            background: linear-gradient(135deg, var(--thkr-lightest-peach), var(--thkr-light-peach));
+            border: 3px solid var(--thkr-peach);
+            border-radius: 20px;
+            padding: 3.5rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .foster-cta-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--thkr-coral);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .foster-cta h3 {
+            font-size: 2.5rem;
+            color: var(--thkr-dark-teal);
+            margin-bottom: 1.25rem;
+            line-height: 1.3;
+        }
+
+        .foster-cta-benefits {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin: 2.5rem 0;
+            text-align: left;
+        }
+
+        .foster-benefit {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .foster-benefit i {
+            color: var(--thkr-coral);
+            font-size: 1.5rem;
+            margin-top: 0.25rem;
+            flex-shrink: 0;
+        }
+
+        .foster-benefit h4 {
+            color: var(--thkr-dark-teal);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .foster-benefit p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--thkr-dark-teal);
+            opacity: 0.85;
+        }
+
+        /* Ways to Help / Make a Difference CTAs */
+        .help-ctas-section {
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .help-ctas-section h2 {
+            font-size: 3rem;
+            color: var(--thkr-dark-teal);
+            margin-bottom: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .help-ctas-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 0 auto;
+        }
+
+        .help-cta-card {
+            background: linear-gradient(135deg, #f5d7ce, #e8c4b8);
+            border-radius: 25px;
+            padding: 1.5rem 1.75rem 1.75rem;
+            text-align: left;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .help-cta-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .help-cta-card h3 {
+            font-size: 1.5rem;
+            color: var(--thkr-dark-teal);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .help-cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--thkr-dark-teal);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .help-cta-link:hover {
+            color: var(--thkr-coral);
+            gap: 0.8rem;
+        }
+
+        .help-cta-link i {
+            font-size: 0.85rem;
+            transition: transform 0.3s ease;
+        }
+
+        .help-cta-card:hover .help-cta-link i {
+            transform: translateX(3px);
+        }
+
+        .help-cta-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: var(--thkr-dark-teal);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .help-cta-image i {
+            font-size: 3.5rem;
+            color: white;
+            opacity: 0.3;
+        }
+
+        .help-cta-image::after {
+            content: 'Photo';
+            position: absolute;
+            bottom: 0.5rem;
+            right: 0.5rem;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+        }
+
+        /* Individual card gradient variations */
+        .help-cta-card:nth-child(1) {
+            background: linear-gradient(135deg, #f5d7ce, #ead0c7);
+        }
+
+        .help-cta-card:nth-child(2) {
+            background: linear-gradient(135deg, #f0ccc2, #e5c2b8);
+        }
+
+        .help-cta-card:nth-child(3) {
+            background: linear-gradient(135deg, #ecc7bb, #e1bdb3);
+        }
+
+        .help-cta-card:nth-child(4) {
+            background: linear-gradient(135deg, #e8c2b6, #ddb8ae);
+        }
+
+        @media (max-width: 1200px) {
+            .help-ctas-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .help-ctas-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Emergency Alert Banner */
+        .emergency-alert {
+            background: linear-gradient(135deg, #ff4444, #ff6b6b);
+            color: white;
+            padding: 2rem 2.5rem;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            animation: pulse 2s infinite;
+        }
+
+        .emergency-alert-icon {
+            font-size: 2.5rem;
+            animation: ring 1.5s infinite;
+            flex-shrink: 0;
+        }
+
+        .emergency-alert-content {
+            flex: 1;
+        }
+
+        .emergency-alert h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .emergency-alert p {
+            opacity: 0.95;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        @keyframes ring {
+            0%, 100% { transform: rotate(0deg); }
+            10%, 30% { transform: rotate(-10deg); }
+            20%, 40% { transform: rotate(10deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.7); }
+            50% { box-shadow: 0 0 0 20px rgba(255, 68, 68, 0); }
+        }
+
+        @media (max-width: 768px) {
+            .donation-thermometer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .success-story {
+                grid-template-columns: 1fr;
+            }
+
+            .foster-cta-benefits {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+
+        /* Form Elements */
+        .form-example {
+            max-width: 600px;
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--thkr-dark-teal);
+            font-size: 1.05rem;
+            line-height: 1.4;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1.25rem 1.75rem;
+            border: 2px solid var(--thkr-light-peach);
+            border-radius: 50px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.4;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--thkr-coral);
+            box-shadow: 0 0 0 3px rgba(255, 152, 118, 0.1);
+        }
+
+        textarea.form-input {
+            border-radius: 20px;
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Layout Examples */
+        .layout-preview {
+            border: 3px solid var(--thkr-light-peach);
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 2rem 0;
+            background: white;
+        }
+
+        .layout-header {
+            background: var(--thkr-peach);
+            padding: 1rem;
+            font-weight: 600;
+            text-align: center;
+            color: var(--thkr-dark-teal);
+        }
+
+        .layout-content {
+            padding: 2rem;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--thkr-dark-teal);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--thkr-coral);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 152, 118, 0.4);
+        }
+
+        /* Donation Thermometer */
+        .thermometer-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            text-align: center;
+        }
+
+        .thermometer-title {
+            font-size: 2rem;
+            color: var(--thkr-dark-teal);
+            margin-bottom: 1.25rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .thermometer-goal {
+            font-size: 1.2rem;
+            color: var(--thkr-dark-teal);
+            opacity: 0.85;
+            margin-bottom: 2.25rem;
+            line-height: 1.6;
+        }
+
+        .thermometer-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .thermometer {
+            position: relative;
+            width: 80px;
+            height: 350px;
+            margin: 0 auto;
+            background: white;
+            border: 4px solid var(--thkr-dark-teal);
+            border-radius: 40px 40px 0 0;
+            border-bottom: none;
+            overflow: hidden;
+        }
+
+        .thermometer-fill {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, var(--thkr-coral), var(--thkr-coral-light));
+            transition: height 1s ease;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-end;
+            justify-content: center;
+            padding: 0.5rem;
+            gap: 0.3rem;
+        }
+
+        .thermometer-icon {
+            font-size: 1.1rem;
+            color: white;
+            opacity: 0.9;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .thermometer-icon:nth-child(2n) {
+            animation-delay: 0.5s;
+        }
+
+        .thermometer-icon:nth-child(3n) {
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .thermometer-bulb {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            border: 4px solid var(--thkr-dark-teal);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            top: -20px;
+        }
+
+        .thermometer-bulb-fill {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--thkr-coral), var(--thkr-coral-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .thermometer-bulb-fill i {
+            font-size: 2.5rem;
+            color: white;
+            z-index: 10;
+        }
+
+        .thermometer-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--thkr-coral);
+            margin: 1rem 0 0.5rem;
+        }
+
+        .thermometer-label {
+            font-size: 1rem;
+            color: var(--thkr-dark-teal);
+            opacity: 0.8;
+        }
+
+        .thermometer-markers {
+            position: absolute;
+            left: -60px;
+            top: 0;
+            bottom: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .thermometer-marker {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--thkr-dark-teal);
+            text-align: right;
+        }
+
+        /* Comprehensive Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            /* Header & Navigation */
+            .ds-header {
+                padding: 1.5rem 5%;
+            }
+
+            .ds-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .ds-header p {
+                font-size: 0.9rem;
+            }
+
+            .ds-nav {
+                padding: 0.75rem 5%;
+            }
+
+            .ds-nav ul {
+                gap: 0.5rem;
+                font-size: 0.85rem;
+            }
+
+            /* Sections */
+            .ds-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .ds-section h2 {
+                font-size: 2rem;
+            }
+
+            .ds-section h3 {
+                font-size: 1.5rem;
+            }
+
+            .ds-section-subtitle {
+                font-size: 0.95rem;
+            }
+
+            /* Icons */
+            .icon-showcase {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 1rem;
+            }
+
+            .icon-item {
+                padding: 1rem;
+            }
+
+            .icon-item i {
+                font-size: 2rem;
+            }
+
+            .icon-name {
+                font-size: 0.75rem;
+            }
+
+            /* Colors */
+            .color-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            /* Typography */
+            h1 {
+                font-size: 2.5rem !important;
+            }
+
+            /* Buttons */
+            .btn-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            /* Feature Boxes */
+            .ds-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            /* Our Approach */
+            .approach-section {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .approach-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .approach-item {
+                padding: 2rem 1.5rem;
+            }
+
+            .approach-item h3 {
+                font-size: 1.3rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .approach-item h3::after {
+                width: 50px;
+                height: 2px;
+            }
+
+            .approach-item p {
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+
+            /* Stats */
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .stat-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            /* Thermometer */
+            .thermometer-title {
+                font-size: 1.5rem;
+            }
+
+            .thermometer-goal {
+                font-size: 1rem;
+            }
+
+            .thermometer {
+                width: 60px;
+                height: 280px;
+            }
+
+            .thermometer-bulb {
+                width: 80px;
+                height: 80px;
+            }
+
+            .thermometer-markers {
+                left: -50px;
+                font-size: 0.8rem;
+            }
+
+            .thermometer-amount {
+                font-size: 2rem;
+            }
+
+            /* Donation Form */
+            .donation-amounts {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .donation-amount {
+                font-size: 1.1rem;
+                padding: 1.2rem 0.8rem;
+            }
+
+            /* Newsletter */
+            .newsletter-box {
+                padding: 2rem 1.5rem;
+            }
+
+            .newsletter-box h3 {
+                font-size: 1.5rem;
+            }
+
+            .newsletter-box p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+
+            .newsletter-form input {
+                font-size: 0.95rem;
+                padding: 0.9rem 1.2rem;
+            }
+
+            .newsletter-form button {
+                font-size: 0.95rem;
+                padding: 0.9rem 1.5rem;
+            }
+
+            /* Testimonial */
+            .testimonial {
+                padding: 2rem 1.5rem;
+            }
+
+            .testimonial-quote {
+                font-size: 2rem;
+            }
+
+            .testimonial-text {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+
+            .testimonial-author {
+                flex-direction: row;
+                gap: 1rem;
+            }
+
+            .testimonial-avatar {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .testimonial-info h4 {
+                font-size: 1rem;
+            }
+
+            .testimonial-info p {
+                font-size: 0.85rem;
+            }
+
+            /* Success Story */
+            .success-story {
+                grid-template-columns: 1fr;
+            }
+
+            .success-story-image {
+                font-size: 10rem;
+                padding: 2rem;
+                min-height: 300px;
+            }
+
+            .success-story h3 {
+                font-size: 1.4rem;
+                line-height: 1.4;
+            }
+
+            .success-story-content {
+                padding: 1.5rem;
+            }
+
+            .success-story-content p {
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+
+            .success-story-badge {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.8rem;
+            }
+
+            .success-story-timeline {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .timeline-item strong {
+                font-size: 0.95rem;
+            }
+
+            .timeline-item span {
+                font-size: 0.85rem;
+            }
+
+            /* Foster CTA */
+            .foster-cta {
+                padding: 2rem 1.5rem;
+            }
+
+            .foster-cta h3 {
+                font-size: 2rem;
+            }
+
+            .foster-cta p {
+                font-size: 1rem;
+            }
+
+            .foster-cta-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2.5rem;
+            }
+
+            .foster-benefit h4 {
+                font-size: 1rem;
+            }
+
+            .foster-benefit p {
+                font-size: 0.9rem;
+            }
+
+            /* Help CTAs */
+            .help-ctas-section h2 {
+                font-size: 2.5rem;
+            }
+
+            .help-cta-card h3 {
+                font-size: 1.3rem;
+            }
+
+            /* Emergency Alert */
+            .emergency-alert {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+
+            .emergency-alert h4 {
+                font-size: 1.1rem;
+            }
+
+            .emergency-alert p {
+                font-size: 0.9rem;
+            }
+
+            /* Hero Layouts */
+            .hero-example h1,
+            .hero-fullscreen h1,
+            .hero-image-bg h1,
+            .hero-minimal h1 {
+                font-size: 2.5rem !important;
+            }
+
+            .hero-example p,
+            .hero-fullscreen p,
+            .hero-image-bg p,
+            .hero-minimal p {
+                font-size: 1.1rem !important;
+            }
+
+            /* Cards */
+            .card {
+                margin-bottom: 1.5rem;
+            }
+
+            .card-image {
+                height: 180px;
+            }
+
+            .card-content {
+                padding: 1.5rem;
+            }
+
+            .card-title {
+                font-size: 1.3rem;
+                line-height: 1.3;
+            }
+
+            .card-text {
+                font-size: 0.95rem;
+                line-height: 1.7;
+            }
+
+            .card-meta {
+                font-size: 0.85rem;
+                gap: 0.75rem;
+            }
+
+            .card-tags .tag {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.8rem;
+            }
+
+            /* Layout Previews */
+            .layout-preview {
+                border-width: 2px;
+            }
+
+            .layout-content {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 480px) {
+            .ds-header h1 {
+                font-size: 1.3rem;
+            }
+
+            .ds-nav ul {
+                font-size: 0.75rem;
+                gap: 0.3rem;
+            }
+
+            .ds-section {
+                padding: 1.5rem 1rem;
+            }
+
+            .ds-section h2 {
+                font-size: 1.75rem;
+            }
+
+            .icon-showcase {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+
+            .help-ctas-section h2 {
+                font-size: 2rem;
+            }
+
+            .help-cta-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .approach-title {
+                font-size: 1.75rem;
+            }
+
+            .donation-amounts {
+                grid-template-columns: 1fr;
+            }
+
+            .btn {
+                font-size: 0.9rem;
+                padding: 0.9rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="ds-header">
+        <h1><i class="fa-solid fa-heart"></i> Two Hearts Kitten Rescue</h1>
+        <p>Design System & Component Library</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="ds-nav">
+        <ul>
+            <li><a href="#icons">Icons</a></li>
+            <li><a href="#colors">Colors</a></li>
+            <li><a href="#typography">Typography</a></li>
+            <li><a href="#buttons">Buttons</a></li>
+            <li><a href="#cards">Cards</a></li>
+            <li><a href="#stats">Stats & Thermometer</a></li>
+            <li><a href="#special-components">Special Components</a></li>
+            <li><a href="#layouts">Hero & Layouts</a></li>
+        </ul>
+    </nav>
+
+    <div class="ds-container">
+
+        <!-- ICON LIBRARY -->
+        <section id="icons" class="ds-section">
+            <h2><i class="fa-solid fa-icons"></i> Icon Library</h2>
+            <p class="ds-section-subtitle">Using Font Awesome 6.5 - Professional, consistent icons</p>
+
+            <h3>Core Icons for Two Hearts</h3>
+            <div class="icon-showcase">
+                <div class="icon-item">
+                    <i class="fa-solid fa-heart"></i>
+                    <div class="icon-name">Heart</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa-solid fa-cat"></i>
+                    <div class="icon-name">Cat</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa-solid fa-paw"></i>
+                    <div class="icon-name">Paw</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa-solid fa-house"></i>
+                    <div class="icon-name">House / Home</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa-solid fa-hand-holding-heart"></i>
+                    <div class="icon-name">Foster</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                    <div class="icon-name">Donate</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa-solid fa-shield-cat"></i>
+                    <div class="icon-name">Protection / Care</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa-solid fa-hands-praying"></i>
+                    <div class="icon-name">Volunteer</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa-solid fa-user-nurse"></i>
+                    <div class="icon-name">Medical Care</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa-solid fa-syringe"></i>
+                    <div class="icon-name">Vaccinations</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa-solid fa-stethoscope"></i>
+                    <div class="icon-name">Checkup</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <div class="icon-name">Schedule</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div class="icon-name">Location</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <div class="icon-name">Phone</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div class="icon-name">Email</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa-solid fa-clock"></i>
+                    <div class="icon-name">24/7 Care</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa-solid fa-shield-cat"></i>
+                    <div class="icon-name">Protection</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa-solid fa-medal"></i>
+                    <div class="icon-name">Achievement</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa-solid fa-star"></i>
+                    <div class="icon-name">Featured</div>
+                </div>
+                <div class="icon-item">
+                    <i class="fa-solid fa-check-circle"></i>
+                    <div class="icon-name">Verified</div>
+                </div>
+            </div>
+
+            <h3>Social Media Icons</h3>
+            <div class="social-icons" style="justify-content: flex-start; margin: 2rem 0;">
+                <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+
+            <h3>Icon Usage in Components</h3>
+            <div class="ds-grid">
+                <div class="ds-example">
+                    <span class="ds-label">Feature Icons</span>
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <p style="margin-top: 1rem;">Use in circular badges for features</p>
+                </div>
+
+                <div class="ds-example">
+                    <span class="ds-label">Button Icons</span>
+                    <button class="btn btn-primary">
+                        <i class="fa-solid fa-cat"></i>
+                        Adopt a Kitten
+                    </button>
+                    <p style="margin-top: 1rem;">Icons before button text</p>
+                </div>
+
+                <div class="ds-example">
+                    <span class="ds-label">Badge Icons</span>
+                    <span class="card-badge" style="position: static;">
+                        <i class="fa-solid fa-check-circle"></i>
+                        Available
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUR APPROACH SHOWCASE -->
+        <section class="ds-section" style="background: linear-gradient(135deg, var(--thkr-light-peach), var(--thkr-lightest-peach));">
+            <h2><i class="fa-solid fa-lightbulb"></i> Our Approach Section (Featured Design)</h2>
+            <p class="ds-section-subtitle">A key section showcasing our three core values - this is a great example of layout and style!</p>
+
+            <div class="approach-section">
+                <h2 class="approach-title">Our Approach</h2>
+                <div class="approach-grid">
+                    <div class="approach-item">
+                        <h3>Compassionate Care</h3>
+                        <p>We prioritize enrichment and socialization to provide comprehensive care that nurtures every kitten's physical, emotional, and behavioral well-being, helping them thrive.</p>
+                    </div>
+                    <div class="approach-item">
+                        <h3 style="white-space: nowrap;">Innovative Technologies</h3>
+                        <p>We're integrating AI, connected devices, and automation to revolutionize training, provide 24/7 foster support, cut costs, and elevate kitten care in our nursery.</p>
+                    </div>
+                    <div class="approach-item">
+                        <h3>Reimagined Programs</h3>
+                        <p>We're developing a number of programs designed to address the challenges both pets and people in our community face today, creating innovative solutions for a brighter future.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: white; padding: 2rem; border-radius: 15px; margin-top: 2rem;">
+                <h4 style="color: var(--thkr-dark-teal); margin-bottom: 1rem;">Design Notes:</h4>
+                <ul style="color: var(--thkr-dark-teal); line-height: 2; margin-left: 1.5rem;">
+                    <li><strong>Peach background</strong> (#EBCAC0) creates warm, inviting section</li>
+                    <li><strong>Three equal columns</strong> with subtle borders between them</li>
+                    <li><strong>Coral underline</strong> on each heading for emphasis</li>
+                    <li><strong>White overlay</strong> on cards for depth and readability</li>
+                    <li><strong>Responsive:</strong> Stacks vertically on mobile</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- BRAND COLORS -->
+        <section id="colors" class="ds-section">
+            <h2><i class="fa-solid fa-palette"></i> Brand Colors</h2>
+            <p class="ds-section-subtitle">Our color palette creates warmth, trust, and playfulness</p>
+
+            <div class="color-grid">
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #0C4862;">Dark Teal</div>
+                    <div class="color-name">Dark Teal</div>
+                    <div class="color-hex">#0C4862</div>
+                    <div class="color-hex">Primary Brand Color</div>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #FF9876;">Coral</div>
+                    <div class="color-name">Coral</div>
+                    <div class="color-hex">#FF9876</div>
+                    <div class="color-hex">Accent/CTAs</div>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #FFB499;">Light Coral</div>
+                    <div class="color-name">Light Coral</div>
+                    <div class="color-hex">#FFB499</div>
+                    <div class="color-hex">Gradients/Hovers</div>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #EBCAC0; color: #0C4862;">Peach</div>
+                    <div class="color-name">Peach</div>
+                    <div class="color-hex">#EBCAC0</div>
+                    <div class="color-hex">Backgrounds</div>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #FFE8E0; color: #0C4862;">Light Peach</div>
+                    <div class="color-name">Light Peach</div>
+                    <div class="color-hex">#FFE8E0</div>
+                    <div class="color-hex">Cards/Sections</div>
+                </div>
+
+                <div class="color-swatch">
+                    <div class="color-box" style="background: #FFF5F2; color: #0C4862;">Lightest Peach</div>
+                    <div class="color-name">Lightest Peach</div>
+                    <div class="color-hex">#FFF5F2</div>
+                    <div class="color-hex">Subtle Backgrounds</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TYPOGRAPHY -->
+        <section id="typography" class="ds-section">
+            <h2><i class="fa-solid fa-font"></i> Typography</h2>
+            <p class="ds-section-subtitle">Fredoka font family - friendly, warm, and readable</p>
+
+            <div class="type-scale">
+                <div class="type-example">
+                    <div class="type-label">Headline 1 (H1) - 4.5rem / 700 weight</div>
+                    <h1 style="font-size: 4.5rem; font-weight: 700; line-height: 1.1;">Tiny Paws, Big Hearts</h1>
+                </div>
+
+                <div class="type-example">
+                    <div class="type-label">Headline 2 (H2) - 3rem / 700 weight</div>
+                    <h2 style="font-size: 3rem; font-weight: 700;">Our Mission</h2>
+                </div>
+
+                <div class="type-example">
+                    <div class="type-label">Headline 3 (H3) - 2rem / 700 weight</div>
+                    <h3 style="font-size: 2rem; font-weight: 700;">Compassionate Care</h3>
+                </div>
+
+                <div class="type-example">
+                    <div class="type-label">Body Text - 1.05rem / 400 weight</div>
+                    <p style="font-size: 1.05rem; line-height: 1.8;">We rescue the smallest and most vulnerable kittens, providing expert neonatal care and finding them loving forever homes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BUTTONS -->
+        <section id="buttons" class="ds-section">
+            <h2><i class="fa-solid fa-hand-pointer"></i> Buttons & CTAs</h2>
+            <p class="ds-section-subtitle">Clear, inviting, and action-oriented</p>
+
+            <h3>Button Styles with Icons</h3>
+            <div class="ds-grid">
+                <div class="ds-example">
+                    <span class="ds-label">Primary Button</span>
+                    <button class="btn btn-primary">
+                        <i class="fa-solid fa-cat"></i>
+                        Adopt a Kitten
+                    </button>
+                </div>
+
+                <div class="ds-example">
+                    <span class="ds-label">Secondary Button</span>
+                    <button class="btn btn-secondary">
+                        <i class="fa-solid fa-circle-info"></i>
+                        Learn More
+                    </button>
+                </div>
+
+                <div class="ds-example">
+                    <span class="ds-label">Light Button</span>
+                    <button class="btn btn-light">
+                        <i class="fa-solid fa-paw"></i>
+                        View Kittens
+                    </button>
+                </div>
+
+                <div class="ds-example">
+                    <span class="ds-label">Dark Button</span>
+                    <button class="btn btn-dark">
+                        <i class="fa-solid fa-envelope"></i>
+                        Subscribe
+                    </button>
+                </div>
+            </div>
+
+            <h3>Action Buttons</h3>
+            <div class="ds-example">
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn btn-primary">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                        Donate Now
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fa-solid fa-house"></i>
+                        Foster Today
+                    </button>
+                    <button class="btn btn-secondary">
+                        <i class="fa-solid fa-heart"></i>
+                        Volunteer
+                    </button>
+                    <button class="btn btn-light">
+                        <i class="fa-solid fa-envelope"></i>
+                        Contact Us
+                    </button>
+                </div>
+            </div>
+
+            <h3>Button Sizes</h3>
+            <div class="ds-example">
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                    <button class="btn btn-primary btn-small">
+                        <i class="fa-solid fa-cat"></i>
+                        Small
+                    </button>
+                    <button class="btn btn-primary">
+                        <i class="fa-solid fa-cat"></i>
+                        Regular
+                    </button>
+                    <button class="btn btn-primary btn-large">
+                        <i class="fa-solid fa-cat"></i>
+                        Large
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CARDS -->
+        <section id="cards" class="ds-section">
+            <h2><i class="fa-solid fa-table-cells-large"></i> Card Components</h2>
+            <p class="ds-section-subtitle">For featuring kittens, programs, and content</p>
+
+            <h3>Kitten Cards (3-Across Layout)</h3>
+            <div class="card-grid-3">
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-badge">
+                            <i class="fa-solid fa-check-circle"></i>
+                            Available
+                        </span>
+                        <i class="fa-solid fa-cat" style="font-size: 5rem; color: var(--thkr-dark-teal);"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Whiskers</h3>
+                        <div class="card-meta">
+                            <span><i class="fa-solid fa-clock"></i> 8 weeks</span>
+                            <span><i class="fa-solid fa-venus-mars"></i> Male</span>
+                        </div>
+                        <p class="card-text">Energetic tabby full of personality! Loves to play and cuddle.</p>
+                        <div class="card-tags">
+                            <span class="tag">Playful</span>
+                            <span class="tag">Affectionate</span>
+                        </div>
+                        <button class="btn btn-primary">
+                            <i class="fa-solid fa-heart"></i>
+                            Meet Whiskers
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-badge" style="background: #0C4862;">
+                            <i class="fa-solid fa-hourglass-half"></i>
+                            Reserved
+                        </span>
+                        <i class="fa-solid fa-cat" style="font-size: 5rem; color: var(--thkr-dark-teal);"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Luna</h3>
+                        <div class="card-meta">
+                            <span><i class="fa-solid fa-clock"></i> 10 weeks</span>
+                            <span><i class="fa-solid fa-venus-mars"></i> Female</span>
+                        </div>
+                        <p class="card-text">Professional cuddler who loves calm environments.</p>
+                        <div class="card-tags">
+                            <span class="tag">Gentle</span>
+                            <span class="tag">Quiet</span>
+                        </div>
+                        <button class="btn btn-secondary">
+                            <i class="fa-solid fa-info-circle"></i>
+                            Meet Luna
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-badge" style="background: green;">
+                            <i class="fa-solid fa-heart"></i>
+                            Adopted!
+                        </span>
+                        <i class="fa-solid fa-cat" style="font-size: 5rem; color: var(--thkr-dark-teal);"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Oliver</h3>
+                        <div class="card-meta">
+                            <span><i class="fa-solid fa-clock"></i> 12 weeks</span>
+                            <span><i class="fa-solid fa-venus-mars"></i> Male</span>
+                        </div>
+                        <p class="card-text">Curious and brave, Oliver is always investigating something new. Smart, social, and ready for adventure!</p>
+                        <div class="card-tags">
+                            <span class="tag">Adventurous</span>
+                            <span class="tag">Smart</span>
+                            <span class="tag">Social</span>
+                        </div>
+                        <button class="btn btn-secondary">
+                            <i class="fa-solid fa-info-circle"></i>
+                            Success Story
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Program/Service Cards (Equal Height)</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="feature-icon feature-icon-large">
+                            <i class="fa-solid fa-house"></i>
+                        </div>
+                        <h3 class="card-title" style="margin-top: 1rem;">Adopt</h3>
+                        <p class="card-text">Give a rescued kitten their forever home. Fully vetted, socialized, and ready for love.</p>
+                        <button class="btn btn-primary">
+                            <i class="fa-solid fa-paw"></i>
+                            Start Adoption
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <div class="feature-icon feature-icon-large" style="background: #0C4862;">
+                            <i class="fa-solid fa-hand-holding-heart"></i>
+                        </div>
+                        <h3 class="card-title" style="margin-top: 1rem;">Foster</h3>
+                        <p class="card-text">Become a Foster Hero! We provide supplies and 24/7 support.</p>
+                        <button class="btn btn-primary">
+                            <i class="fa-solid fa-heart"></i>
+                            Become a Foster
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <div class="feature-icon feature-icon-large">
+                            <i class="fa-solid fa-hand-holding-dollar"></i>
+                        </div>
+                        <h3 class="card-title" style="margin-top: 1rem;">Donate</h3>
+                        <p class="card-text">Fund medical care, formula, and emergency rescues for kittens in need.</p>
+                        <button class="btn btn-primary">
+                            <i class="fa-solid fa-dollar-sign"></i>
+                            Make a Gift
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS -->
+        <section id="stats" class="ds-section">
+            <h2><i class="fa-solid fa-chart-line"></i> Statistics & Impact</h2>
+            <p class="ds-section-subtitle">Showcase our mission's impact with bold numbers</p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-cat"></i>
+                    </div>
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Kittens Rescued</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-house"></i>
+                    </div>
+                    <div class="stat-number">450+</div>
+                    <div class="stat-label">Adoptions</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                    </div>
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Foster Heroes</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Survival Rate</div>
+                </div>
+            </div>
+
+            <h3>Donation Thermometer + Form (Interactive)</h3>
+            <p class="ds-section-subtitle">Donation form paired with dynamic fundraising tracker - currently at $60K of $100K goal!</p>
+
+            <div class="donation-thermometer-grid">
+                <div class="donation-form">
+                    <h3><i class="fa-solid fa-heart"></i> Make a Donation</h3>
+                    <p class="subtitle">Every dollar saves a tiny life</p>
+
+                    <div class="donation-amounts">
+                        <div class="donation-amount active">
+                            $25
+                            <small>Feed 5 kittens</small>
+                        </div>
+                        <div class="donation-amount">
+                            $50
+                            <small>Medical supplies</small>
+                        </div>
+                        <div class="donation-amount">
+                            $100
+                            <small>Emergency care</small>
+                        </div>
+                        <div class="donation-amount">
+                            $250
+                            <small>Full bottle baby kit</small>
+                        </div>
+                        <div class="donation-amount">
+                            $500
+                            <small>Foster setup</small>
+                        </div>
+                        <div class="donation-amount">
+                            $1000
+                            <small>Critical surgery</small>
+                        </div>
+                    </div>
+
+                    <div class="custom-amount">
+                        <label class="form-label">Or enter custom amount:</label>
+                        <input type="number" placeholder="$ Custom amount" min="1">
+                    </div>
+
+                    <div class="impact-message">
+                        <i class="fa-solid fa-info-circle"></i>
+                        <strong>Your $25 will provide formula and supplies for 5 neonatal kittens for one week!</strong>
+                    </div>
+
+                    <button class="btn btn-primary" style="width: 100%; font-size: 1.2rem; padding: 1.2rem;">
+                        <i class="fa-solid fa-heart"></i>
+                        Donate Now
+                    </button>
+
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; opacity: 0.7;">
+                        <i class="fa-solid fa-lock"></i> Secure payment via Stripe
+                    </p>
+                </div>
+
+                <div class="thermometer-container">
+                <h3 class="thermometer-title">Help Us Reach Our Goal!</h3>
+                <p class="thermometer-goal">Every dollar saves a life</p>
+
+                <div style="position: relative; padding: 0 80px;">
+                    <div class="thermometer-markers">
+                        <div class="thermometer-marker">$100K</div>
+                        <div class="thermometer-marker">$75K</div>
+                        <div class="thermometer-marker">$50K</div>
+                        <div class="thermometer-marker">$25K</div>
+                        <div class="thermometer-marker">$0</div>
+                    </div>
+
+                    <div class="thermometer-wrapper">
+                        <div class="thermometer">
+                            <div class="thermometer-fill" style="height: 60%;">
+                                <!-- Kitten icons filling the thermometer -->
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                                <i class="fa-solid fa-cat thermometer-icon"></i>
+                            </div>
+                        </div>
+                        <div class="thermometer-bulb">
+                            <div class="thermometer-bulb-fill">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="thermometer-amount">$60,000</div>
+                <div class="thermometer-label">raised of $100,000 goal</div>
+
+                <button class="btn btn-primary" style="margin-top: 2rem;">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                    Donate Now
+                </button>
+                </div>
+            </div>
+
+            <div style="background: var(--thkr-lightest-peach); padding: 2rem; border-radius: 15px; margin-top: 2rem; border-left: 4px solid var(--thkr-coral);">
+                <h4 style="color: var(--thkr-dark-teal); margin-bottom: 1rem;"><i class="fa-solid fa-code"></i> Technical Notes:</h4>
+                <ul style="color: var(--thkr-dark-teal); line-height: 2; margin-left: 1.5rem;">
+                    <li><strong>Dynamic fill:</strong> JavaScript adjusts height based on donation amount (currently 60%)</li>
+                    <li><strong>Kitten icons:</strong> Fill from bottom up with floating animation</li>
+                    <li><strong>Coral gradient:</strong> Fills the thermometer from coral to light coral</li>
+                    <li><strong>Heart bulb:</strong> Shows at the base with matching gradient</li>
+                    <li><strong>Markers:</strong> Show $0, $25K, $50K, $75K, $100K milestones</li>
+                    <li><strong>Real-time updates:</strong> Can be connected to donation API for live tracking</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SPECIAL COMPONENTS FOR KITTEN RESCUE -->
+        <section id="special-components" class="ds-section">
+            <h2><i class="fa-solid fa-puzzle-piece"></i> Special Components</h2>
+            <p class="ds-section-subtitle">Rescue-specific components designed for maximum engagement and impact</p>
+
+            <h3>Newsletter Signup</h3>
+            <div class="newsletter-box">
+                <h3><i class="fa-solid fa-envelope-open-text"></i> Stay Updated</h3>
+                <p>Get weekly kitten updates, success stories, and foster tips delivered to your inbox!</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address">
+                    <button><i class="fa-solid fa-paper-plane"></i> Subscribe</button>
+                </div>
+            </div>
+
+            <h3>Testimonial / Adopter Review</h3>
+            <div class="testimonial">
+                <div class="testimonial-quote"><i class="fa-solid fa-quote-left"></i></div>
+                <div class="testimonial-text">
+                    "Two Hearts saved my little Luna when she was just 3 days old. The foster team provided incredible support, and now she's a thriving 2-year-old who brings endless joy to our home. We can't thank them enough for their dedication to these tiny souls!"
+                </div>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="testimonial-info">
+                        <h4>Sarah Martinez</h4>
+                        <p>Adopted Luna in 2023</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Success Story Card</h3>
+            <div class="success-story">
+                <div class="success-story-image">
+                    <i class="fa-solid fa-cat"></i>
+                </div>
+                <div class="success-story-content">
+                    <span class="success-story-badge"><i class="fa-solid fa-star"></i> Success Story</span>
+                    <h3>Meet Oliver: From Critical Care to Forever Home</h3>
+                    <p>Oliver came to us at just 2 days old, weighing only 70 grams and fighting for his life. After 8 weeks of intensive bottle feeding, medical care, and lots of love from his foster family, Oliver was adopted by the perfect family. Today, he's a healthy, playful 6-month-old who loves chasing feather toys and cuddling on the couch.</p>
+                    <div class="success-story-timeline">
+                        <div class="timeline-item">
+                            <strong>Day 1</strong>
+                            <span>Rescue: 70g, critical condition</span>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>Week 8</strong>
+                            <span>Ready for adoption: 2.5 lbs</span>
+                        </div>
+                        <div class="timeline-item">
+                            <strong>6 Months</strong>
+                            <span>Thriving in forever home!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Foster Application CTA</h3>
+            <div class="foster-cta">
+                <div class="foster-cta-icon">
+                    <i class="fa-solid fa-hand-holding-heart"></i>
+                </div>
+                <h3>Become a Foster Hero</h3>
+                <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem;">Open your home and heart to save the tiniest lives. We provide all supplies, medical care, and 24/7 support.</p>
+
+                <div class="foster-cta-benefits">
+                    <div class="foster-benefit">
+                        <i class="fa-solid fa-box"></i>
+                        <div>
+                            <h4>All Supplies Provided</h4>
+                            <p>Formula, bottles, bedding, and everything you need</p>
+                        </div>
+                    </div>
+                    <div class="foster-benefit">
+                        <i class="fa-solid fa-stethoscope"></i>
+                        <div>
+                            <h4>Full Medical Coverage</h4>
+                            <p>We cover all vet bills and medications</p>
+                        </div>
+                    </div>
+                    <div class="foster-benefit">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <h4>24/7 Support Team</h4>
+                            <p>Expert help whenever you need it</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 3rem;">
+                    <i class="fa-solid fa-file-signature"></i>
+                    Apply to Foster
+                </button>
+            </div>
+
+            <h3>Ways to Help / Make a Difference CTAs</h3>
+            <p class="ds-section-subtitle">Beautiful photo-based CTA cards with subtle gradient backgrounds</p>
+
+            <div class="help-ctas-section">
+                <h2>Help Make a Difference</h2>
+                <div class="help-ctas-grid">
+                    <div class="help-cta-card">
+                        <h3>Purchase From Our Wishlist</h3>
+                        <div class="help-cta-image">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
+                        <a href="#" class="help-cta-link">
+                            Learn More <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="help-cta-card">
+                        <h3>Donate to Make a Difference</h3>
+                        <div class="help-cta-image">
+                            <i class="fa-solid fa-piggy-bank"></i>
+                        </div>
+                        <a href="#" class="help-cta-link">
+                            Learn More <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="help-cta-card">
+                        <h3>Become a Kitten Foster</h3>
+                        <div class="help-cta-image">
+                            <i class="fa-solid fa-cat"></i>
+                        </div>
+                        <a href="#" class="help-cta-link">
+                            Learn More <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="help-cta-card">
+                        <h3>Volunteer With Our Team</h3>
+                        <div class="help-cta-image">
+                            <i class="fa-solid fa-hands-holding-child"></i>
+                        </div>
+                        <a href="#" class="help-cta-link">
+                            Learn More <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: white; padding: 2rem; border-radius: 15px; margin-top: 2rem;">
+                <h4 style="color: var(--thkr-dark-teal); margin-bottom: 1rem;">Design Notes:</h4>
+                <ul style="color: var(--thkr-dark-teal); line-height: 2; margin-left: 1.5rem;">
+                    <li><strong>Subtle gradient backgrounds:</strong> Each card has a slightly different peachy gradient (#f5d7ce to #e8c4b8 range)</li>
+                    <li><strong>Photo placeholders:</strong> Square images with rounded corners to showcase real photos</li>
+                    <li><strong>Action-oriented "Learn More →" link:</strong> Encourages click-through with arrow animation on hover</li>
+                    <li><strong>Clean typography:</strong> Title, link, then photo creates clear visual hierarchy</li>
+                    <li><strong>Interactive hover effects:</strong> Cards lift up, link arrow slides right, text changes to coral color</li>
+                    <li><strong>4-column grid:</strong> Responsive to 2 columns on tablet, 1 column on mobile</li>
+                </ul>
+            </div>
+
+            <h3>Emergency / Urgent Need Alert</h3>
+            <div class="emergency-alert">
+                <div class="emergency-alert-icon">
+                    <i class="fa-solid fa-bell"></i>
+                </div>
+                <div class="emergency-alert-content">
+                    <h4>Urgent: Foster Families Needed!</h4>
+                    <p>We just rescued 8 neonatal kittens and need emergency foster homes. Can you help? All supplies and support provided.</p>
+                </div>
+                <button class="btn" style="background: white; color: #ff4444; font-weight: 700;">
+                    <i class="fa-solid fa-hand-holding-heart"></i>
+                    I Can Help
+                </button>
+            </div>
+
+        </section>
+
+        <!-- LAYOUTS -->
+        <section id="layouts" class="ds-section">
+            <h2><i class="fa-solid fa-grip"></i> Layout Options</h2>
+            <p class="ds-section-subtitle">Different ways to structure key sections</p>
+
+            <h3>Hero Layout: Centered</h3>
+            <div class="layout-preview">
+                <div class="hero-example">
+                    <div class="hero-badge">
+                        <i class="fa-solid fa-certificate"></i>
+                        501(c)(3) Nonprofit
+                    </div>
+                    <h1 style="font-size: 3.5rem; margin-bottom: 1.5rem; font-weight: 700;">Tiny Paws, Big Hearts</h1>
+                    <p style="font-size: 1.4rem; max-width: 700px; margin: 0 auto 2rem;">Expert neonatal care for the smallest kittens</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <button class="btn btn-primary">
+                            <i class="fa-solid fa-cat"></i>
+                            Meet Kittens
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fa-solid fa-hand-holding-heart"></i>
+                            Foster
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Hero Layout: Split (Content + Image)</h3>
+            <div class="layout-preview">
+                <div class="hero-split">
+                    <div class="hero-split-content">
+                        <div class="hero-badge">
+                            <i class="fa-solid fa-certificate"></i>
+                            501(c)(3) Nonprofit
+                        </div>
+                        <h1 style="font-size: 3rem; margin-bottom: 1rem; font-weight: 700;">Tiny Paws, Big Hearts</h1>
+                        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Expert neonatal care for the smallest kittens in our community.</p>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <button class="btn btn-primary">
+                                <i class="fa-solid fa-cat"></i>
+                                Meet Kittens
+                            </button>
+                            <button class="btn btn-secondary">
+                                <i class="fa-solid fa-hand-holding-heart"></i>
+                                Foster
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hero-split-image">
+                        <i class="fa-solid fa-cat"></i>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Hero Layout: Fullscreen Dark</h3>
+            <div class="layout-preview">
+                <div class="hero-fullscreen">
+                    <div class="hero-badge-dark">
+                        <i class="fa-solid fa-certificate"></i>
+                        501(c)(3) Nonprofit
+                    </div>
+                    <h1 style="font-size: 4rem; margin-bottom: 1.5rem; font-weight: 700; color: white;">Every Kitten Deserves Love</h1>
+                    <p style="font-size: 1.5rem; max-width: 800px; margin: 0 auto 2.5rem; color: rgba(255,255,255,0.9);">We provide 24/7 neonatal care for orphaned and abandoned kittens</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <button class="btn" style="background: var(--thkr-coral); color: white; border: none;">
+                            <i class="fa-solid fa-heart"></i>
+                            Donate Now
+                        </button>
+                        <button class="btn" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; backdrop-filter: blur(10px);">
+                            <i class="fa-solid fa-cat"></i>
+                            Our Mission
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Hero Layout: Image Background with Overlay</h3>
+            <div class="layout-preview">
+                <div class="hero-image-bg">
+                    <div class="hero-badge-dark">
+                        <i class="fa-solid fa-paw"></i>
+                        Saving Lives Since 2020
+                    </div>
+                    <h1 style="font-size: 3.5rem; margin-bottom: 1.5rem; font-weight: 700; color: white;">Making a Difference</h1>
+                    <p style="font-size: 1.4rem; max-width: 700px; margin: 0 auto 2rem; color: rgba(255,255,255,0.95);">Join us in our mission to save and rehabilitate neonatal kittens</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <button class="btn" style="background: var(--thkr-coral); color: white; border: none;">
+                            <i class="fa-solid fa-hand-holding-heart"></i>
+                            Get Involved
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Hero Layout: Minimal/Clean</h3>
+            <div class="layout-preview">
+                <div class="hero-minimal">
+                    <div class="hero-badge">
+                        <i class="fa-solid fa-heart"></i>
+                        Neonatal Kitten Rescue
+                    </div>
+                    <h1 style="font-size: 3rem; margin-bottom: 1rem; font-weight: 700; color: var(--thkr-dark-teal);">Simple. Focused. Effective.</h1>
+                    <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem; color: var(--thkr-dark-teal);">Providing expert care for the tiniest kittens who need it most</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <button class="btn btn-primary">
+                            <i class="fa-solid fa-cat"></i>
+                            Available Kittens
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fa-solid fa-circle-info"></i>
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Feature Grid with Icons</h3>
+            <div class="layout-preview">
+                <div class="layout-content">
+                    <div class="ds-grid">
+                        <div class="feature-box">
+                            <div class="feature-icon">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <h4>24/7 Neonatal Care</h4>
+                            <p>Round-the-clock expert care</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon" style="background: #0C4862;">
+                                <i class="fa-solid fa-stethoscope"></i>
+                            </div>
+                            <h4>Full Medical Support</h4>
+                            <p>Comprehensive veterinary care</p>
+                        </div>
+
+                        <div class="feature-box">
+                            <div class="feature-icon">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                            <h4>Lifetime Support</h4>
+                            <p>We're here after adoption</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>2x2 Grid (Ways to Help)</h3>
+            <div class="layout-preview">
+                <div class="layout-header" style="background: #0C4862; color: white;">Make a Difference</div>
+                <div class="layout-content" style="background: #0C4862;">
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+                        <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; border: 2px solid rgba(255,255,255,0.2); text-align: center;">
+                            <div style="font-size: 3rem; color: white; margin-bottom: 1rem;">
+                                <i class="fa-solid fa-house"></i>
+                            </div>
+                            <h4 style="font-size: 1.5rem; color: white; margin-bottom: 0.5rem;">Adopt</h4>
+                            <p style="color: rgba(255,255,255,0.9); margin-bottom: 1.5rem;">Give a kitten their forever home</p>
+                            <button class="btn btn-light btn-small">Learn More</button>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; border: 2px solid rgba(255,255,255,0.2); text-align: center;">
+                            <div style="font-size: 3rem; color: white; margin-bottom: 1rem;">
+                                <i class="fa-solid fa-hand-holding-heart"></i>
+                            </div>
+                            <h4 style="font-size: 1.5rem; color: white; margin-bottom: 0.5rem;">Foster</h4>
+                            <p style="color: rgba(255,255,255,0.9); margin-bottom: 1.5rem;">Become a Foster Hero</p>
+                            <button class="btn btn-light btn-small">Start Fostering</button>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; border: 2px solid rgba(255,255,255,0.2); text-align: center;">
+                            <div style="font-size: 3rem; color: white; margin-bottom: 1rem;">
+                                <i class="fa-solid fa-hand-holding-dollar"></i>
+                            </div>
+                            <h4 style="font-size: 1.5rem; color: white; margin-bottom: 0.5rem;">Donate</h4>
+                            <p style="color: rgba(255,255,255,0.9); margin-bottom: 1.5rem;">Fund life-saving care</p>
+                            <button class="btn btn-light btn-small">Make a Gift</button>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; border: 2px solid rgba(255,255,255,0.2); text-align: center;">
+                            <div style="font-size: 3rem; color: white; margin-bottom: 1rem;">
+                                <i class="fa-solid fa-hands-praying"></i>
+                            </div>
+                            <h4 style="font-size: 1.5rem; color: white; margin-bottom: 0.5rem;">Volunteer</h4>
+                            <p style="color: rgba(255,255,255,0.9); margin-bottom: 1.5rem;">Join our team</p>
+                            <button class="btn btn-light btn-small">Get Involved</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESIGN PRINCIPLES -->
+        <section class="ds-section" style="background: linear-gradient(135deg, #0C4862, #0a3a4f); color: white;">
+            <h2 style="color: white;"><i class="fa-solid fa-lightbulb" style="color: #FFB499;"></i> Design Principles</h2>
+            <p class="ds-section-subtitle" style="color: rgba(255,255,255,0.9);">What makes Two Hearts design unique</p>
+
+            <div class="ds-grid">
+                <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 20px; border: 2px solid rgba(255,255,255,0.2);">
+                    <div style="font-size: 2.5rem; color: var(--thkr-coral); margin-bottom: 1rem;">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <h3 style="color: white; font-size: 1.5rem; margin-bottom: 1rem;">Playful + Heartfelt</h3>
+                    <p style="color: rgba(255,255,255,0.9);">Warm colors, rounded corners, and friendly icons create an inviting, joyful experience</p>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 20px; border: 2px solid rgba(255,255,255,0.2);">
+                    <div style="font-size: 2.5rem; color: var(--thkr-coral); margin-bottom: 1rem;">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 style="color: white; font-size: 1.5rem; margin-bottom: 1rem;">Trustworthy + Professional</h3>
+                    <p style="color: rgba(255,255,255,0.9);">Clean layouts, clear CTAs, and data transparency build confidence</p>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 20px; border: 2px solid rgba(255,255,255,0.2);">
+                    <div style="font-size: 2.5rem; color: var(--thkr-coral); margin-bottom: 1rem;">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <h3 style="color: white; font-size: 1.5rem; margin-bottom: 1rem;">Hopeful + Inspiring</h3>
+                    <p style="color: rgba(255,255,255,0.9);">Showcase impact through stats, success stories, and clear paths to action</p>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 20px; border: 2px solid rgba(255,255,255,0.2);">
+                    <div style="font-size: 2.5rem; color: var(--thkr-coral); margin-bottom: 1rem;">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 style="color: white; font-size: 1.5rem; margin-bottom: 1rem;">Creative + Innovative</h3>
+                    <p style="color: rgba(255,255,255,0.9);">Modern design with unique touches reflecting our tech-forward approach</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
